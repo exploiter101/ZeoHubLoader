@@ -440,13 +440,13 @@ end
 -- SPAWN BUTTON and DUPE BUTTON now show a loading screen and then redirect to script
 spawnButton.MouseButton1Click:Connect(function()
     showRedirectLoadingScreen(function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHub/refs/heads/main/ZeoHubScript2.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHubLoader/refs/heads/main/test2.lua"))()
     end)
 end)
 
 dupeButton.MouseButton1Click:Connect(function()
     showRedirectLoadingScreen(function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHub/refs/heads/main/ZeoHubScript2.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHubLoader/refs/heads/main/test2.lua"))()
     end)
 end)
 
