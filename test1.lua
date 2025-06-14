@@ -239,9 +239,9 @@ content.BackgroundTransparency = 1
 -- SPAWN PET SECTION (Pet Name, Age, Weight)
 -- SPAWN BUTTON (centered in the parent)
 local spawnButton = Instance.new("TextButton", content)
-spawnButton.Size = UDim2.new(0.6, 0, 0, 55) -- Width is 60% of parent, 32px tall
-spawnButton.Position = UDim2.new(0.5, 0, 0, 40) -- Centered
-spawnButton.AnchorPoint = Vector2.new(0.5, 0)  -- Centered
+spawnButton.Size = UDim2.new(1, 0, 0, 55) -- Width is 60% of parent, 32px tall
+spawnButton.Position = UDim2.new(0.5, 0, 0, 16)
+spawnButton.AnchorPoint = Vector2.new(0.5, 0)
 spawnButton.Text = "Load"
 spawnButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 spawnButton.Font = Enum.Font.FredokaOne
