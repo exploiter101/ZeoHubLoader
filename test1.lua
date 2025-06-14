@@ -240,7 +240,7 @@ content.BackgroundTransparency = 1
 -- SPAWN BUTTON (centered in the parent)
 local spawnButton = Instance.new("TextButton", content)
 spawnButton.Size = UDim2.new(0.6, 0, 0, 32) -- Width is 60% of parent, 32px tall
-spawnButton.Position = UDim2.new(0.5, 0, 0, 18) -- Centered
+spawnButton.Position = UDim2.new(0.5, 0, 0, 1) -- Centered
 spawnButton.AnchorPoint = Vector2.new(0.5, 0)  -- Centered
 spawnButton.Text = "Load"
 spawnButton.TextColor3 = Color3.fromRGB(255, 255, 255)
