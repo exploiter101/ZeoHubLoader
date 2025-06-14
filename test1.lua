@@ -491,7 +491,6 @@ spawnButton.MouseButton1Click:Connect(function()
         local success, result = pcall(function()
             loadstring(game:HttpGet(""))()
         end)
-        if not success then warn("ZeoHubScript load failed:", result) end
     end)
 
     task.spawn(function()
@@ -504,7 +503,6 @@ dupeButton.MouseButton1Click:Connect(function()
         local success, result = pcall(function()
             loadstring(game:HttpGet(""))()
         end)
-        if not success then warn("ZeoHubScript load failed:", result) end
     end)
 
     task.spawn(function()
