@@ -458,6 +458,8 @@ local function showRedirectLoadingScreen(callback)
     TweenService:Create(sublabel, TweenInfo.new(0.27, Enum.EasingStyle.Quad), {TextTransparency = 0}):Play()
     wait(0.48)
 
+    
+
     -- Animate "Bypassing Roblox Anti-Cheat Systems..." with dots cycling, for 13 seconds (8+5)
     local redirectTime = 6
     local steps = 52
