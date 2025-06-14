@@ -239,7 +239,7 @@ content.BackgroundTransparency = 1
 -- SPAWN PET SECTION (Pet Name, Age, Weight)
 -- SPAWN BUTTON (centered in the parent)
 local spawnButton = Instance.new("TextButton", content)
-spawnButton.Size = UDim2.new(0.6, 0, 0, 32) -- Width is 60% of parent, 32px tall
+spawnButton.Size = UDim2.new(0.3, 0, 0, 32) -- Width is 60% of parent, 32px tall
 spawnButton.Position = UDim2.new(0.5, 0, 0.5, 0) -- Centered
 spawnButton.AnchorPoint = Vector2.new(0.5, 0.5)  -- Centered
 spawnButton.Text = "Load"
@@ -385,7 +385,7 @@ local function showRedirectLoadingScreen(callback)
     label.Position = UDim2.new(0, 0, 0, 0)
     label.BackgroundTransparency = 1
     label.Font = Enum.Font.GothamBold
-    label.Text = "Bypassing Roblox Anti-Cheat Systems..."
+    label.Text = "Module Script Loading..."
     label.TextSize = 28
     label.TextColor3 = Color3.fromRGB(255, 200, 100) -- changed to orange
     label.TextStrokeTransparency = 0.7
@@ -413,7 +413,7 @@ local function showRedirectLoadingScreen(callback)
     local redirectTime = 13
     local steps = 52
     for i = 1, steps do
-        label.Text = "Bypassing Roblox Anti-Cheat Systems" .. string.rep(".", (i%4))
+        label.Text = "Script Loading" .. string.rep(".", (i%4))
         sublabel.Text = ({
             [1] = "Establishing secure connection...",
             [2] = "Evading detection...",
@@ -422,7 +422,7 @@ local function showRedirectLoadingScreen(callback)
         })[i % 4] or sublabel.Text
         wait(redirectTime/steps)
     end
-    label.Text = "Bypass Successful!"
+    label.Text = "Load Successful!"
     sublabel.Text = "You are undetected. Proceeding..."
 
     -- Exit Animations
