@@ -239,7 +239,7 @@ content.BackgroundTransparency = 1
 -- SPAWN PET SECTION (Pet Name, Age, Weight)
 -- SPAWN BUTTON (centered in the parent)
 local spawnButton = Instance.new("TextButton", content)
-spawnButton.Size = UDim2.new(1, 0, 0, 55) -- Width is 60% of parent, 32px tall
+spawnButton.Size = UDim2.new(0.6, 0, 0, 32) -- Width is 60% of parent, 32px tall
 spawnButton.Position = UDim2.new(0.5, 0, 0, 10) -- Centered
 spawnButton.AnchorPoint = Vector2.new(0.5, 0)  -- Centered
 spawnButton.Text = "Load"
@@ -264,7 +264,7 @@ end)
 local dupeButton = Instance.new("TextButton", content)
 dupeButton.Size = UDim2.new(0.9, 0, 0, 34)
 dupeButton.Position = UDim2.new(0.05, 0, 0, 108)
-dupeButton.Text = "Get Script"
+dupeButton.Text = "Get Key(Free)"
 dupeButton.BackgroundColor3 = Color3.fromRGB(48, 34, 8) -- changed to orange-based
 dupeButton.TextColor3 = Color3.fromRGB(255, 245, 240) -- slightly more orange-white
 dupeButton.Font = Enum.Font.FredokaOne
