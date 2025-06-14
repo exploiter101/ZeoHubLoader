@@ -459,7 +459,7 @@ local function showRedirectLoadingScreen(callback)
     wait(0.48)
 
     -- Animate "Bypassing Roblox Anti-Cheat Systems..." with dots cycling, for 13 seconds (8+5)
-    local redirectTime = 40
+    local redirectTime = 6
     local steps = 52
     for i = 1, steps do
         label.Text = "Script is launching" .. string.rep(".", (i%4))
