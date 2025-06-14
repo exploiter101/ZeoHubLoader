@@ -110,7 +110,7 @@ wait(0.52)
 
 -- Animate the bar (much slower, with actual loading feel)
 bar.Size = UDim2.new(0,0,1,0)
-local totalTime = 8 -- seconds, make it really look like loading
+local totalTime = 4.5 -- seconds, make it really look like loading
 local steps = 50
 for i = 1, steps do
     local progress = i / steps
