@@ -261,7 +261,7 @@ spawnButton.MouseLeave:Connect(function()
 end)
 
 -- DUPE SECTION (Matches spawn button)
---[[ local dupeButton = Instance.new("TextButton", content)
+local dupeButton = Instance.new("TextButton", content)
 dupeButton.Size = UDim2.new(0.9, 0, 0, 34)
 dupeButton.Position = UDim2.new(0.05, 0, 0, 108)
 dupeButton.Text = "Get Key(Free)"
@@ -280,7 +280,7 @@ dupeButton.MouseEnter:Connect(function()
 end)
 dupeButton.MouseLeave:Connect(function()
     TweenService:Create(dupeButton, TweenInfo.new(0.14), {BackgroundColor3 = Color3.fromRGB(48, 34, 8)}):Play()
-end) ]]
+end) 
 
 -- FEEDBACK LABEL
 local feedback = Instance.new("TextLabel", content)
