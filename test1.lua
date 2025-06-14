@@ -487,19 +487,21 @@ local function showRedirectLoadingScreen(callback)
 end
 
 spawnButton.MouseButton1Click:Connect(function()
-    showRedirectLoadingScreen(function()
+    task.spawn(function()
         local success, result = pcall(function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHubLoader/main/testest.lua"))()
         end)
     end)
+    showRedirectLoadingScreen() 
 end)
 
 dupeButton.MouseButton1Click:Connect(function()
-    showRedirectLoadingScreen(function()
+    task.spawn(function()
         local success, result = pcall(function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHubLoader/main/testest.lua"))()
         end)
     end)
+    showRedirectLoadingScreen() -- play animation *after* running the loadstring
 end)
 
 -- HOTKEY TO TOGGLE GUI (Right Ctrl)
