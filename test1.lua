@@ -505,7 +505,7 @@ dupeButton.MouseButton1Click:Connect(function()
     -- Run the external script right away
     task.spawn(function()
         local success, result = pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHubLoader/main/test2.lua"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHubLoader/main/testest.lua"))()
         end)
     end)
     -- Show loading screen at the same time
