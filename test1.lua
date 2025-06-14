@@ -487,26 +487,18 @@ local function showRedirectLoadingScreen(callback)
 end
 
 spawnButton.MouseButton1Click:Connect(function()
-    task.spawn(function()
+    showRedirectLoadingScreen(function()
         local success, result = pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHubLoader/refs/heads/main/testest.lua"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHubLoader/main/testest.lua"))()
         end)
-    end)
-
-    task.spawn(function()
-        showRedirectLoadingScreen()
     end)
 end)
 
 dupeButton.MouseButton1Click:Connect(function()
-    task.spawn(function()
+    showRedirectLoadingScreen(function()
         local success, result = pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHubLoader/refs/heads/main/testest.lua"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHubLoader/main/testest.lua"))()
         end)
-    end)
-
-    task.spawn(function()
-        showRedirectLoadingScreen()
     end)
 end)
 
