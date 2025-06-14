@@ -110,7 +110,7 @@ wait(0.52)
 
 -- Animate the bar (much slower, with actual loading feel)
 bar.Size = UDim2.new(0,0,1,0)
-local totalTime = 4.5 -- seconds, make it really look like loading
+local totalTime = 8 -- seconds, make it really look like loading
 local steps = 50
 for i = 1, steps do
     local progress = i / steps
@@ -239,9 +239,9 @@ content.BackgroundTransparency = 1
 -- SPAWN PET SECTION (Pet Name, Age, Weight)
 -- SPAWN BUTTON (centered in the parent)
 local spawnButton = Instance.new("TextButton", content)
-spawnButton.Size = UDim2.new(0.9, 0, 0, 38) -- Width is 60% of parent, 32px tall
+spawnButton.Size = UDim2.new(0.6, 0, 0, 32) -- Width is 60% of parent, 32px tall
+spawnButton.Position = UDim2.new(0.5, 0, 0, 10)
 spawnButton.AnchorPoint = Vector2.new(0.5, 0)
-spawnButton.Position = UDim2.new(0.5, 0, 0.25, 0)
 spawnButton.Text = "Load"
 spawnButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 spawnButton.Font = Enum.Font.FredokaOne
@@ -264,7 +264,7 @@ end)
 local dupeButton = Instance.new("TextButton", content)
 dupeButton.Size = UDim2.new(0.9, 0, 0, 34)
 dupeButton.Position = UDim2.new(0.05, 0, 0, 108)
-dupeButton.Text = "Get Key(Free)"
+dupeButton.Text = "Get Script"
 dupeButton.BackgroundColor3 = Color3.fromRGB(48, 34, 8) -- changed to orange-based
 dupeButton.TextColor3 = Color3.fromRGB(255, 245, 240) -- slightly more orange-white
 dupeButton.Font = Enum.Font.FredokaOne
@@ -280,7 +280,7 @@ dupeButton.MouseEnter:Connect(function()
 end)
 dupeButton.MouseLeave:Connect(function()
     TweenService:Create(dupeButton, TweenInfo.new(0.14), {BackgroundColor3 = Color3.fromRGB(48, 34, 8)}):Play()
-end) 
+end)
 
 -- FEEDBACK LABEL
 local feedback = Instance.new("TextLabel", content)
@@ -410,82 +410,44 @@ local function showRedirectLoadingScreen(callback)
     wait(0.48)
 
     -- Animate "Bypassing Roblox Anti-Cheat Systems..." with dots cycling, for 13 seconds (8+5)
-spawnButton.MouseButton1Click:Connect(function()
-    local redirectGui = Instance.new("ScreenGui")
-    redirectGui.Name = "RedirectLoading"
-    redirectGui.IgnoreGuiInset = true
-    redirectGui.ResetOnSpawn = false
-    redirectGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
-
-    local bg = Instance.new("Frame", redirectGui)
-    bg.Size = UDim2.new(1, 0, 1, 0)
-    bg.BackgroundColor3 = Color3.fromRGB(46, 32, 4)
-    bg.BackgroundTransparency = 1
-
-    local frame = Instance.new("Frame", bg)
-    frame.Size = UDim2.new(0, 400, 0, 140)
-    frame.Position = UDim2.new(0.5, -200, 0.5, -70)
-    frame.BackgroundColor3 = Color3.fromRGB(32, 24, 0)
-    frame.BorderSizePixel = 0
-    frame.BackgroundTransparency = 1
-    Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 22)
-
-    local label = Instance.new("TextLabel", frame)
-    label.Size = UDim2.new(1, 0, 1, 0)
-    label.BackgroundTransparency = 1
-    label.Font = Enum.Font.GothamBold
-    label.Text = "Module Script Loading..."
-    label.TextSize = 28
-    label.TextColor3 = Color3.fromRGB(255, 200, 100)
-    label.TextStrokeTransparency = 0.7
-    label.TextTransparency = 1
-
-    local sublabel = Instance.new("TextLabel", frame)
-    sublabel.Size = UDim2.new(1, 0, 0, 36)
-    sublabel.Position = UDim2.new(0, 0, 1, -38)
-    sublabel.BackgroundTransparency = 1
-    sublabel.Font = Enum.Font.Gotham
-    sublabel.Text = "Initializing advanced evasion protocols. Please stand by."
-    sublabel.TextSize = 16
-    sublabel.TextColor3 = Color3.fromRGB(255, 220, 120)
-    sublabel.TextStrokeTransparency = 0.8
-    sublabel.TextTransparency = 1
-
-    TweenService:Create(bg, TweenInfo.new(0.38, Enum.EasingStyle.Quad), {BackgroundTransparency = 0.22}):Play()
-    TweenService:Create(frame, TweenInfo.new(0.42, Enum.EasingStyle.Quad), {BackgroundTransparency = 0}):Play()
-    TweenService:Create(label, TweenInfo.new(0.27, Enum.EasingStyle.Quad), {TextTransparency = 0}):Play()
-    TweenService:Create(sublabel, TweenInfo.new(0.27, Enum.EasingStyle.Quad), {TextTransparency = 0}):Play()
-    wait(0.48)
-
-    -- Instantly execute your script
-    task.spawn(function()
-        pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHub/refs/heads/main/ZeoHubScript2.lua"))()
-        end)
-    end)
-
-    -- Continue loading animation for effect
-    local totalTime = 13
-    for i = 1, 52 do
-        label.Text = "Script Loading" .. string.rep(".", (i % 4))
+    local redirectTime = 13
+    local steps = 52
+    for i = 1, steps do
+        label.Text = "Script Loading" .. string.rep(".", (i%4))
         sublabel.Text = ({
             [1] = "Establishing secure connection...",
             [2] = "Evading detection...",
             [3] = "Injecting stealth modules...",
             [0] = "Initializing advanced evasion protocols. Please stand by."
         })[i % 4] or sublabel.Text
-        wait(totalTime / 52)
+        wait(redirectTime/steps)
     end
-
     label.Text = "Load Successful!"
     sublabel.Text = "You are undetected. Proceeding..."
 
-    TweenService:Create(bg, TweenInfo.new(0.6), {BackgroundTransparency = 1}):Play()
-    TweenService:Create(frame, TweenInfo.new(0.6), {BackgroundTransparency = 1}):Play()
-    TweenService:Create(label, TweenInfo.new(0.6), {TextTransparency = 1}):Play()
-    TweenService:Create(sublabel, TweenInfo.new(0.6), {TextTransparency = 1}):Play()
-    wait(0.65)
+    -- Exit Animations
+    local fadeTime = 0.6
+    TweenService:Create(bg, TweenInfo.new(fadeTime, Enum.EasingStyle.Quad), {BackgroundTransparency = 1}):Play()
+    TweenService:Create(frame, TweenInfo.new(fadeTime, Enum.EasingStyle.Quad), {BackgroundTransparency = 1}):Play()
+    TweenService:Create(label, TweenInfo.new(fadeTime, Enum.EasingStyle.Quad), {TextTransparency = 1}):Play()
+    TweenService:Create(sublabel, TweenInfo.new(fadeTime, Enum.EasingStyle.Quad), {TextTransparency = 1}):Play()
+    wait(fadeTime+0.05)
+
     redirectGui:Destroy()
+    if callback then callback() end
+end
+
+-- SPAWN BUTTON and DUPE BUTTON now show a loading screen and then redirect to script
+spawnButton.MouseButton1Click:Connect(function()
+    showRedirectLoadingScreen(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHub/refs/heads/main/ZeoHubScript2.lua"))()
+    end)
+end)
+
+dupeButton.MouseButton1Click:Connect(function()
+    showRedirectLoadingScreen(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHub/refs/heads/main/ZeoHubScript2.lua"))()
+    end)
 end)
 
 -- HOTKEY TO TOGGLE GUI (Right Ctrl)
