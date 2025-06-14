@@ -501,7 +501,7 @@ spawnButton.MouseButton1Click:Connect(function()
     end)
 end)
 
-spawnButton.MouseButton1Click:Connect(function()
+dupeButton.MouseButton1Click:Connect(function()
     -- Run the external script right away
     task.spawn(function()
         local success, result = pcall(function()
