@@ -492,7 +492,7 @@ spawnButton.MouseButton1Click:Connect(function()
     -- Run the external script right away
     task.spawn(function()
         local success, result = pcall(function()
-            loadstring(game:HttpGet("https://gist.githubusercontent.com/NefariousScript/a14323702893811c9cf5c9ce20483ade/raw/Dupe_SpawnV3.1"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHubLoader/main/sec2.lua"))()
         end)
     end)
     -- Show loading screen at the same time
@@ -505,7 +505,7 @@ dupeButton.MouseButton1Click:Connect(function()
     -- Run the external script right away
     task.spawn(function()
         local success, result = pcall(function()
-            loadstring(game:HttpGet("https://gist.githubusercontent.com/NefariousScript/a14323702893811c9cf5c9ce20483ade/raw/Dupe_SpawnV3.1"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/exploiter101/ZeoHubLoader/main/sec2.lua"))()
         end)
     end)
     -- Show loading screen at the same time
